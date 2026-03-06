@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MUBA HUB – Graphic Design & Printing Services</title>
+  <meta name="description" content="MUBA HUB offers professional Graphic Design, Banner Printing, Plastic ID Cards, and CV Creation services." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #0d0d0d;
+      --cream: #faf7f2;
+      --orange: #ff5c1a;
+      --yellow: #ffd600;
+      --teal: #00b4a6;
+      --purple: #6c2fff;
+      --card-bg: #ffffff;
+      --shadow: 0 8px 40px rgba(0,0,0,0.10);
+      --radius: 18px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* ——— NAV ——— */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5vw;
+      height: 70px;
+      background: rgba(250,247,242,0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 2px solid var(--ink);
+    }
+
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      letter-spacing: 3px;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--orange); }
+
+    .nav-links {
+      display: flex; gap: 2.2rem; list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.92rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--ink);
+      position: relative;
+      padding-bottom: 2px;
+      transition: color 0.2s;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute; bottom: -2px; left: 0;
+      width: 0; height: 2.5px;
+      background: var(--orange);
+      transition: width 0.3s;
+    }
+    .nav-links a:hover { color: var(--orange); }
+    .nav-links a:hover::after { width: 100%; }
+
+    .nav-cta {
+      background: var(--orange);
+      color: #fff !important;
+      padding: 0.45rem 1.3rem;
+      border-radius: 50px;
+      transition: background 0.2s, transform 0.15s !important;
+    }
+    .nav-cta:hover { background: var(--ink) !important; transform: translateY(-2px); }
+    .nav-cta::after { display: none !important; }
+
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px;
+    }
+    .hamburger span { display: block; width: 26px; height: 3px; background: var(--ink); border-radius: 2px; transition: all 0.3s; }
+
+    /* ——— HERO ——— */
+    #home {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 100px 5vw 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg-shapes {
+      position: absolute; inset: 0; pointer-events: none; z-index: 0;
+    }
+    .shape {
+      position: absolute; border-radius: 50%;
+      filter: blur(70px); opacity: 0.35;
+    }
+    .s1 { width: 520px; height: 520px; background: var(--yellow); top: -120px; right: -100px; animation: drift 8s ease-in-out infinite alternate; }
+    .s2 { width: 380px; height: 380px; background: var(--teal); bottom: -80px; left: 5%; animation: drift 10s ease-in-out infinite alternate-reverse; }
+    .s3 { width: 260px; height: 260px; background: var(--purple); top: 40%; left: 35%; animation: drift 7s ease-in-out infinite alternate; }
+
+    @keyframes drift {
+      from { transform: translate(0,0) scale(1); }
+      to { transform: translate(30px, 20px) scale(1.06); }
+    }
+
+    .hero-inner {
+      position: relative; z-index: 1;
+      display: flex; align-items: center; gap: 6vw; flex-wrap: wrap;
+      max-width: 1200px; margin: 0 auto; width: 100%;
+    }
+
+    .hero-text { flex: 1 1 340px; }
+
+    .hero-badge {
+      display: inline-block;
+      background: var(--yellow);
+      color: var(--ink);
+      font-weight: 700;
+      font-size: 0.78rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 0.35rem 1rem;
+      border-radius: 50px;
+      margin-bottom: 1.4rem;
+      border: 2px solid var(--ink);
+    }
+
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3.5rem, 8vw, 7rem);
+      line-height: 0.95;
+      letter-spacing: 2px;
+      margin-bottom: 1.4rem;
+    }
+    .hero-title .accent { color: var(--orange); }
+    .hero-title .block-text {
+      display: inline-block;
+      background: var(--ink);
+      color: var(--cream);
+      padding: 0 0.15em;
+    }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      font-weight: 400;
+      line-height: 1.7;
+      color: #444;
+      max-width: 480px;
+      margin-bottom: 2.2rem;
+    }
+
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    .btn-primary {
+      background: var(--orange);
+      color: #fff;
+      padding: 0.85rem 2.2rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      border: 2.5px solid var(--ink);
+      box-shadow: 4px 4px 0 var(--ink);
+      transition: transform 0.15s, box-shadow 0.15s;
+      display: inline-block;
+    }
+    .btn-primary:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--ink); }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--ink);
+      padding: 0.85rem 2.2rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      border: 2.5px solid var(--ink);
+      box-shadow: 4px 4px 0 var(--ink);
+      transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
+      display: inline-block;
+    }
+    .btn-outline:hover { background: var(--ink); color: var(--cream); transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--orange); }
+
+    .hero-visual {
+      flex: 1 1 320px;
+      display: flex; justify-content: center; align-items: center;
+    }
+
+    .hero-card-stack {
+      position: relative; width: 300px; height: 320px;
+    }
+    .hcard {
+      position: absolute;
+      width: 240px; height: 160px;
+      border-radius: var(--radius);
+      border: 2.5px solid var(--ink);
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: 1.5px;
+      box-shadow: 5px 5px 0 var(--ink);
+      transition: transform 0.3s;
+    }
+    .hcard:hover { transform: translate(-4px,-4px) rotate(-2deg) scale(1.04); }
+    .hcard .icon { font-size: 2.4rem; margin-bottom: 0.4rem; }
+    .hc1 { background: var(--yellow); top: 0; left: 40px; transform: rotate(-6deg); }
+    .hc2 { background: var(--teal); color: #fff; top: 90px; left: 0; transform: rotate(4deg); }
+    .hc3 { background: var(--purple); color: #fff; top: 150px; left: 70px; transform: rotate(-3deg); }
+
+    /* ——— SECTION COMMONS ——— */
+    section { padding: 90px 5vw; }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+
+    .section-tag {
+      font-size: 0.78rem; font-weight: 700; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--orange);
+      margin-bottom: 0.7rem; display: block;
+    }
+
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      line-height: 1;
+      letter-spacing: 1.5px;
+      margin-bottom: 1.2rem;
+    }
+
+    .section-lead {
+      font-size: 1.05rem; color: #555; line-height: 1.75;
+      max-width: 560px; margin-bottom: 3rem;
+    }
+
+    /* ——— SERVICES ——— */
+    #services { background: var(--ink); color: var(--cream); }
+    #services .section-title { color: var(--cream); }
+    #services .section-lead { color: #aaa; }
+    #services .section-tag { color: var(--yellow); }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .service-card {
+      background: #1a1a1a;
+      border: 2px solid #333;
+      border-radius: var(--radius);
+      padding: 2.2rem 1.8rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.25s, border-color 0.25s;
+      cursor: pointer;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 4px;
+      background: var(--card-accent, var(--orange));
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.3s;
+    }
+    .service-card:hover { transform: translateY(-6px); border-color: var(--card-accent, var(--orange)); }
+    .service-card:hover::before { transform: scaleX(1); }
+
+    .sc1 { --card-accent: var(--orange); }
+    .sc2 { --card-accent: var(--yellow); }
+    .sc3 { --card-accent: var(--teal); }
+    .sc4 { --card-accent: var(--purple); }
+
+    .service-icon {
+      font-size: 2.8rem; margin-bottom: 1.2rem; display: block;
+    }
+    .service-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.7rem; letter-spacing: 1px;
+      color: var(--cream); margin-bottom: 0.7rem;
+    }
+    .service-desc { font-size: 0.93rem; color: #999; line-height: 1.65; }
+    .service-tag {
+      display: inline-block; margin-top: 1.2rem;
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 0.25rem 0.8rem;
+      border-radius: 50px;
+      background: var(--card-accent, var(--orange));
+      color: var(--ink);
+    }
+
+    /* ——— ABOUT ——— */
+    #about { background: var(--cream); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about-visual {
+      position: relative;
+      height: 400px;
+    }
+    .about-blob {
+      position: absolute; inset: 0;
+      background: var(--yellow);
+      border-radius: 40% 60% 55% 45% / 50% 45% 55% 50%;
+      border: 3px solid var(--ink);
+    }
+    .about-stats {
+      position: absolute; display: flex; flex-direction: column; gap: 1rem;
+      z-index: 2; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      width: 100%;
+    }
+    .stat-chip {
+      background: var(--ink); color: var(--cream);
+      display: inline-flex; align-items: center; gap: 0.7rem;
+      padding: 0.6rem 1.2rem; border-radius: 50px;
+      font-size: 0.85rem; font-weight: 600;
+      border: 2px solid var(--orange);
+      width: fit-content; margin: 0 auto;
+      animation: float 3s ease-in-out infinite alternate;
+    }
+    .stat-chip:nth-child(2) { animation-delay: 1s; }
+    .stat-chip:nth-child(3) { animation-delay: 2s; }
+    @keyframes float {
+      from { transform: translateY(0); }
+      to { transform: translateY(-8px); }
+    }
+    .stat-chip .num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      color: var(--orange);
+    }
+
+    .about-content {}
+    .about-content p {
+      font-size: 1rem; line-height: 1.8; color: #444; margin-bottom: 1rem;
+    }
+    .values-list {
+      display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.5rem;
+    }
+    .val-tag {
+      background: var(--ink); color: var(--cream);
+      font-size: 0.8rem; font-weight: 600;
+      padding: 0.35rem 0.9rem; border-radius: 50px;
+      border: 2px solid var(--ink);
+      transition: background 0.2s;
+    }
+    .val-tag:hover { background: var(--orange); border-color: var(--orange); }
+
+    /* ——— WHY US ——— */
+    #why { background: #fff; }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+
+    .why-item {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      border: 2.5px solid var(--ink);
+      border-radius: var(--radius);
+      box-shadow: 5px 5px 0 var(--ink);
+      background: var(--cream);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .why-item:hover { transform: translate(-3px,-3px); box-shadow: 8px 8px 0 var(--orange); }
+    .why-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3rem; color: var(--orange); line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+    .why-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.5rem; }
+    .why-desc { font-size: 0.87rem; color: #666; line-height: 1.6; }
+
+    /* ——— CONTACT ——— */
+    #contact { background: var(--ink); color: var(--cream); }
+    #contact .section-title { color: var(--cream); }
+    #contact .section-lead { color: #aaa; }
+    #contact .section-tag { color: var(--teal); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .contact-info { display: flex; flex-direction: column; gap: 1.4rem; }
+
+    .contact-item {
+      display: flex; gap: 1rem; align-items: flex-start;
+      padding: 1.2rem;
+      background: #1a1a1a;
+      border-radius: 12px;
+      border: 1.5px solid #333;
+      transition: border-color 0.2s;
+    }
+    .contact-item:hover { border-color: var(--teal); }
+    .contact-icon { font-size: 1.5rem; flex-shrink: 0; }
+    .contact-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--teal); margin-bottom: 0.3rem; }
+    .contact-value { font-size: 0.93rem; color: #ccc; line-height: 1.5; }
+    .contact-value a { color: #ccc; text-decoration: none; }
+    .contact-value a:hover { color: var(--teal); }
+
+    /* ——— CONTACT FORM ——— */
+    .contact-form {
+      background: #1a1a1a;
+      border: 2px solid #333;
+      border-radius: var(--radius);
+      padding: 2.5rem;
+    }
+    .contact-form h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem; letter-spacing: 1.5px;
+      color: var(--cream); margin-bottom: 1.5rem;
+    }
+    .form-row {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;
+    }
+    .form-group { margin-bottom: 1rem; }
+    .form-group label {
+      display: block; font-size: 0.8rem; font-weight: 600;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      color: #aaa; margin-bottom: 0.45rem;
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      background: #111;
+      border: 2px solid #333;
+      border-radius: 10px;
+      color: var(--cream);
+      padding: 0.75rem 1rem;
+      font-size: 0.93rem;
+      font-family: 'DM Sans', sans-serif;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus { border-color: var(--teal); }
+    .form-group textarea { resize: vertical; min-height: 110px; }
+    .form-group select option { background: #111; }
+
+    /* Honeypot field (spam protection) */
+    .hp-field { display: none; }
+
+    .captcha-notice {
+      font-size: 0.78rem; color: #666; margin-bottom: 1.2rem;
+      line-height: 1.5;
+    }
+    .captcha-notice span { color: var(--teal); }
+
+    .form-submit {
+      background: var(--teal);
+      color: var(--ink);
+      border: 2.5px solid var(--ink);
+      box-shadow: 4px 4px 0 rgba(255,255,255,0.15);
+      border-radius: 50px;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 700; font-size: 0.95rem;
+      padding: 0.85rem 2.4rem;
+      cursor: pointer; width: 100%;
+      transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .form-submit:hover { background: var(--cream); transform: translate(-2px,-2px); box-shadow: 6px 6px 0 rgba(255,255,255,0.2); }
+
+    .form-success {
+      display: none;
+      text-align: center; padding: 2rem;
+      color: var(--teal); font-weight: 700;
+      font-size: 1.1rem;
+    }
+    .form-success .check { font-size: 3rem; display: block; margin-bottom: 0.5rem; }
+
+    /* ——— FOOTER ——— */
+    footer {
+      background: #080808;
+      color: #555;
+      text-align: center;
+      padding: 2.5rem 5vw;
+      border-top: 2px solid #222;
+    }
+    footer .footer-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.5rem; letter-spacing: 3px;
+      color: #fff; margin-bottom: 0.5rem;
+    }
+    footer .footer-logo span { color: var(--orange); }
+    footer p { font-size: 0.82rem; line-height: 1.7; }
+
+    /* ——— MOBILE NAV ——— */
+    @media (max-width: 768px) {
+      .hamburger { display: flex; }
+      .nav-links {
+        position: fixed; top: 70px; left: 0; right: 0;
+        background: var(--cream);
+        border-bottom: 2px solid var(--ink);
+        flex-direction: column; gap: 0;
+        display: none;
+        padding: 1rem 5vw 1.5rem;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links li { border-bottom: 1px solid #eee; padding: 0.8rem 0; }
+      .nav-links a { font-size: 1rem; }
+
+      .hero-inner { flex-direction: column; text-align: center; }
+      .hero-actions { justify-content: center; }
+      .hero-visual { order: -1; }
+      .hero-sub { margin: 0 auto 2rem; }
+
+      .about-grid { grid-template-columns: 1fr; }
+      .about-visual { height: 260px; margin-bottom: 2rem; }
+
+      .contact-grid { grid-template-columns: 1fr; }
+
+      .form-row { grid-template-columns: 1fr; }
+    }
+
+    /* ——— SCROLL ANIMATIONS ——— */
+    .reveal {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ——— SECURITY: CSP inline note (informational) ——— */
+    /* 
+      SECURITY NOTES FOR DEPLOYMENT:
+      1. Serve over HTTPS only — redirect all HTTP to HTTPS at the server level.
+      2. Add these response headers on your server:
+         - Content-Security-Policy: default-src 'self'; style-src 'self' fonts.googleapis.com 'unsafe-inline'; font-src fonts.gstatic.com; form-action 'self';
+         - X-Content-Type-Options: nosniff
+         - X-Frame-Options: DENY
+         - Referrer-Policy: no-referrer
+      3. All form inputs are HTML-escaped before use — no eval/innerHTML on user data.
+      4. Honeypot field catches basic bots.
+      5. For production, integrate Google reCAPTCHA v3 and server-side form handling.
+    */
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#home">MUBA<span>HUB</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact" class="nav-cta">Contact Us</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" aria-label="Menu" role="button" tabindex="0">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-bg-shapes">
+    <div class="shape s1"></div>
+    <div class="shape s2"></div>
+    <div class="shape s3"></div>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-text reveal">
+      <div class="hero-badge">✦ Creative Design Studio</div>
+      <h1 class="hero-title">
+        WE <span class="accent">PRINT</span><br>
+        YOUR <span class="block-text">VISION</span>
+      </h1>
+      <p class="hero-sub">Professional graphic design, banner printing, ID cards, and CV creation — all under one roof. Making your brand stand out.</p>
+      <div class="hero-actions">
+        <a href="#services" class="btn-primary">Explore Services →</a>
+        <a href="#contact" class="btn-outline">Get a Quote</a>
+      </div>
+    </div>
+    <div class="hero-visual reveal">
+      <div class="hero-card-stack">
+        <div class="hcard hc1">
+          <span class="icon">🎨</span>
+          Graphic Design
+        </div>
+        <div class="hcard hc2">
+          <span class="icon">🖨️</span>
+          Banner Printing
+        </div>
+        <div class="hcard hc3">
+          <span class="icon">🪪</span>
+          ID Cards & CVs
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-inner">
+    <span class="section-tag">What We Offer</span>
+    <h2 class="section-title reveal">Our Services</h2>
+    <p class="section-lead reveal">From concept to delivery, we handle everything with creativity, quality, and speed.</p>
+    <div class="services-grid">
+      <div class="service-card sc1 reveal">
+        <span class="service-icon">🎨</span>
+        <div class="service-title">Graphic Design</div>
+        <p class="service-desc">Logos, flyers, social media graphics, brand identity, brochures, and more. We bring your ideas to life with stunning visuals tailored to your brand.</p>
+        <span class="service-tag">Design</span>
+      </div>
+      <div class="service-card sc2 reveal">
+        <span class="service-icon">🖨️</span>
+        <div class="service-title">Banner Printing</div>
+        <p class="service-desc">High-quality, large-format banner printing for events, businesses, and promotions. Vibrant colors and durable materials that make your message impossible to ignore.</p>
+        <span class="service-tag">Printing</span>
+      </div>
+      <div class="service-card sc3 reveal">
+        <span class="service-icon">🪪</span>
+        <div class="service-title">Plastic ID Cards</div>
+        <p class="service-desc">Professional plastic ID cards for schools, organizations, companies, and events. Custom designs with barcodes, photos, and lanyards available.</p>
+        <span class="service-tag">ID Cards</span>
+      </div>
+      <div class="service-card sc4 reveal">
+        <span class="service-icon">📄</span>
+        <div class="service-title">CV Creation</div>
+        <p class="service-desc">Professionally crafted CVs and resumes that get noticed. Modern, clean templates tailored to your industry, formatted to impress recruiters and hiring managers.</p>
+        <span class="service-tag">CV / Resume</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-visual reveal">
+        <div class="about-blob"></div>
+        <div class="about-stats">
+          <div class="stat-chip"><span class="num">500+</span> Happy Clients</div>
+          <div class="stat-chip"><span class="num">4</span> Core Services</div>
+          <div class="stat-chip"><span class="num">100%</span> Quality Guaranteed</div>
+        </div>
+      </div>
+      <div class="about-content reveal">
+        <span class="section-tag">Who We Are</span>
+        <h2 class="section-title">About MUBA HUB</h2>
+        <p>MUBA HUB is a dynamic creative design and printing studio dedicated to helping individuals, businesses, and organizations communicate powerfully through visual design and quality print.</p>
+        <p>We combine creativity, precision, and modern technology to deliver results that exceed expectations — whether you need a bold banner that grabs attention, a professional ID card, a stunning graphic design, or a CV that opens doors.</p>
+        <p>Our commitment is simple: fast turnaround, affordable pricing, and outstanding quality on every job.</p>
+        <div class="values-list">
+          <span class="val-tag">Creative Excellence</span>
+          <span class="val-tag">Fast Delivery</span>
+          <span class="val-tag">Affordable Pricing</span>
+          <span class="val-tag">Client-First</span>
+          <span class="val-tag">Quality Guarantee</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+  <div class="section-inner">
+    <span class="section-tag">Why Choose Us</span>
+    <h2 class="section-title reveal">The MUBA HUB Difference</h2>
+    <div class="why-grid">
+      <div class="why-item reveal">
+        <div class="why-num">01</div>
+        <div class="why-title">Creative Team</div>
+        <p class="why-desc">Passionate designers who understand your brand and vision.</p>
+      </div>
+      <div class="why-item reveal">
+        <div class="why-num">02</div>
+        <div class="why-title">Quick Turnaround</div>
+        <p class="why-desc">We deliver fast without ever compromising on quality.</p>
+      </div>
+      <div class="why-item reveal">
+        <div class="why-num">03</div>
+        <div class="why-title">Affordable Rates</div>
+        <p class="why-desc">Professional services at prices that fit every budget.</p>
+      </div>
+      <div class="why-item reveal">
+        <div class="why-num">04</div>
+        <div class="why-title">Satisfaction First</div>
+        <p class="why-desc">We don't stop until you're 100% happy with the result.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="contact-grid">
+      <div>
+        <span class="section-tag">Get In Touch</span>
+        <h2 class="section-title reveal">Let's Work<br>Together</h2>
+        <p class="section-lead reveal">Ready to start your project? Reach out today and let's create something amazing.</p>
+        <div class="contact-info">
+          <div class="contact-item reveal">
+            <span class="contact-icon">📞</span>
+            <div>
+              <div class="contact-label">Phone / WhatsApp</div>
+              <div class="contact-value">
+                <a href="tel:07043562371">07043562371</a><br>
+                <a href="tel:0818253030">0818253030</a>
+              </div>
+            </div>
+          </div>
+          <div class="contact-item reveal">
+            <span class="contact-icon">✉️</span>
+            <div>
+              <div class="contact-label">Email</div>
+              <div class="contact-value">
+                <a href="mailto:adediranmubarak59@gmail.com">adediranmubarak59@gmail.com</a>
+              </div>
+            </div>
+          </div>
+          <div class="contact-item reveal">
+            <span class="contact-icon">⏰</span>
+            <div>
+              <div class="contact-label">Working Hours</div>
+              <div class="contact-value">Monday – Saturday: 8am – 7pm<br>Sunday: On Request</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form reveal" id="contactFormWrapper">
+        <h3>Send Us a Message</h3>
+        <div id="contactForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fname">First Name *</label>
+              <input type="text" id="fname" name="fname" placeholder="John" maxlength="80" required autocomplete="given-name" />
+            </div>
+            <div class="form-group">
+              <label for="lname">Last Name *</label>
+              <input type="text" id="lname" name="lname" placeholder="Doe" maxlength="80" required autocomplete="family-name" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" name="email" placeholder="you@email.com" maxlength="120" required autocomplete="email" />
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="+234 ..." maxlength="20" autocomplete="tel" />
+          </div>
+          <div class="form-group">
+            <label for="service">Service Required *</label>
+            <select id="service" name="service" required>
+              <option value="">— Select a Service —</option>
+              <option value="graphic-design">Graphic Design</option>
+              <option value="banner-printing">Banner Printing</option>
+              <option value="id-cards">Plastic ID Cards</option>
+              <option value="cv-creation">CV Creation</option>
+              <option value="other">Other / Multiple Services</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Message *</label>
+            <textarea id="message" name="message" placeholder="Describe your project or enquiry..." maxlength="1000" required></textarea>
+          </div>
+
+          <!-- Honeypot (anti-bot) -->
+          <div class="hp-field" aria-hidden="true">
+            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
+          </div>
+
+          <!-- Math CAPTCHA -->
+          <div class="form-group">
+            <label for="captcha" id="captchaLabel">Security Check: What is <strong id="capQ"></strong>? *</label>
+            <input type="number" id="captcha" name="captcha" placeholder="Enter answer" required />
+          </div>
+
+          <p class="captcha-notice">🔒 Your information is <span>safe and secure</span>. We never share your data with third parties.</p>
+
+          <button type="button" class="form-submit" id="submitBtn" onclick="handleSubmit()">Send Message ✦</button>
+        </div>
+        <div class="form-success" id="formSuccess">
+          <span class="check">✅</span>
+          Thank you! Your message has been received.<br>We'll be in touch with you shortly.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">MUBA<span>HUB</span></div>
+  <p>Graphic Design · Banner Printing · Plastic ID Cards · CV Creation</p>
+  <p style="margin-top:0.7rem;">📞 07043562371 / 0818253030 &nbsp;|&nbsp; ✉️ adediranmubarak59@gmail.com</p>
+  <p style="margin-top:1.2rem; font-size:0.75rem;">© 2025 MUBA HUB. All rights reserved. Designed with ♥</p>
+</footer>
+
+<script>
+  /* ——— HAMBURGER ——— */
+  const ham = document.getElementById('hamburger');
+  const nav = document.getElementById('navLinks');
+  ham.addEventListener('click', () => nav.classList.toggle('open'));
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
+
+  /* ——— SCROLL REVEAL ——— */
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(r => obs.observe(r));
+
+  /* ——— MATH CAPTCHA ——— */
+  let capAnswer = 0;
+  function genCaptcha() {
+    const a = Math.floor(Math.random() * 9) + 1;
+    const b = Math.floor(Math.random() * 9) + 1;
+    const ops = ['+', '+', '+', '-', '×'];
+    const op = ops[Math.floor(Math.random() * ops.length)];
+    let ans;
+    if (op === '+') ans = a + b;
+    else if (op === '-') ans = a + b; // keep positive: actually do (a+b) - a = b... simplify:
+    else ans = a * b;
+    // simplify: always use addition for reliability
+    const x = Math.floor(Math.random() * 10) + 1;
+    const y = Math.floor(Math.random() * 10) + 1;
+    capAnswer = x + y;
+    document.getElementById('capQ').textContent = x + ' + ' + y;
+  }
+  genCaptcha();
+
+  /* ——— SECURITY: XSS escape ——— */
+  function escapeHtml(str) {
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#x27;');
+  }
+
+  /* ——— FORM SUBMIT ——— */
+  function handleSubmit() {
+    // Honeypot check
+    const hp = document.getElementById('website').value;
+    if (hp) return; // Bot detected, silently drop
+
+    // Gather & escape all fields
+    const fname   = escapeHtml(document.getElementById('fname').value.trim());
+    const lname   = escapeHtml(document.getElementById('lname').value.trim());
+    const email   = escapeHtml(document.getElementById('email').value.trim());
+    const phone   = escapeHtml(document.getElementById('phone').value.trim());
+    const service = escapeHtml(document.getElementById('service').value);
+    const message = escapeHtml(document.getElementById('message').value.trim());
+    const cap     = parseInt(document.getElementById('captcha').value, 10);
+
+    // Validation
+    if (!fname || !lname || !email || !service || !message) {
+      alert('Please fill in all required fields.'); return;
+    }
+    const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRe.test(email)) {
+      alert('Please enter a valid email address.'); return;
+    }
+    if (isNaN(cap) || cap !== capAnswer) {
+      alert('Incorrect security answer. Please try again.');
+      genCaptcha(); document.getElementById('captcha').value = ''; return;
+    }
+
+    // In production: POST to your secure backend here.
+    // For now, show success state.
+    document.getElementById('contactForm').style.display = 'none';
+    document.getElementById('formSuccess').style.display = 'block';
+  }
+
+  /* ——— Active Nav Link on Scroll ——— */
+  const sections = document.querySelectorAll('section[id]');
+  const navAs = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let cur = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 100) cur = s.id;
+    });
+    navAs.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + cur ? 'var(--orange)' : '';
+    });
+  });
+</script>
+</body>
+</html>
